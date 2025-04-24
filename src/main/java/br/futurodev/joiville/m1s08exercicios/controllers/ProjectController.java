@@ -15,8 +15,8 @@ public class ProjectController {
     @Autowired private ProjectService service;
 
     @GetMapping
-    public List<Project> get() {
-        return service.findAll();
+    public List<Project> get(String search) {
+        return service.findAll(search);
     }
 
     @GetMapping("{id}")

@@ -5,6 +5,7 @@ import br.futurodev.joiville.m1s08exercicios.entities.Project;
 import br.futurodev.joiville.m1s08exercicios.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -14,7 +15,10 @@ public class ProjectService {
     @Autowired private ProjectRepository repository;
     @Autowired private OrganizationService organizationService;
 
-    public List<Project> findAll() {
+    public List<Project> findAll(String search) {
+        if (StringUtils.hasText(search)) {
+            return repository.findAllByRegionOrOrganizationName(search);
+        }
         return repository.findAll();
     }
 
